@@ -4,6 +4,8 @@ const datastoreClient = datastore({
   keyFilename: 'app/assets/jinhyung-48e604bf053f.json'
 });
 
+const NUM_RESULTS_PER_PAGE = 15;
+
 module.exports.datastoreClient = datastoreClient
 
 
@@ -29,5 +31,36 @@ exports.dupCheck = (keyName, key, value) => {
         resolve()
       }
     })
+  })
+}
+
+exports.listData = (keyName, page) => {
+  let query = datastoreClient.createQuery(keyName).select('title')
+  // .limit(NUM_RESULTS_PER_PAGE)
+
+  console.log('aa')
+
+  // if(page) { query.start(page)}
+  console.log('bb')
+  datastoreClient.runQuery(query, (err, entity, info) => {
+    console.log('bba')
+      if(err) {
+        console.log('cc')
+        return
+        
+      }
+      console.log('dd')
+      var fontEndResponse = {
+        contacts: entity
+      }
+      console.log('ee')
+
+      if (info.moreResults !== datastoreClient.NO_MORE_RESULTS) {
+        frontEndResponse.nextPageCursor = info.endCursor
+      }
+      console.log('ff')
+
+      console.log(fontEndResponse)
+      
   })
 }
