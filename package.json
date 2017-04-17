@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/datastore": "^0.8.0",
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "google-cloud": "^0.50.0",
+    "iconv": "^2.2.3",
+    "node-schedule": "^1.2.1",
+    "request": "^2.81.0"
   }
 }
